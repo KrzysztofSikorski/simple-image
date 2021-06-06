@@ -328,6 +328,7 @@ class SimpleImage {
    */
   renderSettings() {
     const wrapper = document.createElement("div");
+    console.log(wrapper);
 
     // this.settings.forEach((tune) => {
     //   const el = document.createElement("div");
