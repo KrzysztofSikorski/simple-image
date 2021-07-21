@@ -79,6 +79,7 @@ class SimpleImage {
       width: data.width || "600",
       alt: data.alt || "",
       license: data.license || "",
+      link: data.link || "",
     };
 
     /**
@@ -120,11 +121,17 @@ class SimpleImage {
         innerHTML: this.data.license || "",
         id: "license",
       });
+    link = this._make("div", [this.CSS.input, this.CSS.caption], {
+        contentEditable: !this.readOnly,
+        innerHTML: this.data.link || "",
+        id: "link",
+      });
 
     caption.dataset.placeholder = "Enter a caption";
     width.dataset.placeholder = "Enter a width";
     alt.dataset.placeholder = "Enter a alt";
     license.dataset.placeholder = "Enter a license";
+    link.dataset.placeholder = "Enter a link";
 
     wrapper.appendChild(loader);
 
@@ -140,6 +147,7 @@ class SimpleImage {
       wrapper.appendChild(width);
       wrapper.appendChild(alt);
       wrapper.appendChild(license);
+      wrapper.appendChild(link);
       loader.remove();
       this._acceptTuneView();
     };
@@ -156,6 +164,7 @@ class SimpleImage {
     this.nodes.width = width;
     this.nodes.alt = alt;
     this.nodes.license = license;
+    this.nodes.link = link;
 
     return wrapper;
   }
@@ -171,6 +180,7 @@ class SimpleImage {
       alt = blockContent.querySelector("#alt"),
       width = blockContent.querySelector("#width"),
       license = blockContent.querySelector("#license");
+      link = blockContent.querySelector("#link");
 
     if (!image) {
       return this.data;
@@ -182,6 +192,7 @@ class SimpleImage {
       width: width.innerHTML,
       alt: alt.innerHTML,
       license: license.innerHTML,
+      link: link.innerHTML,
     });
   }
 
@@ -201,6 +212,9 @@ class SimpleImage {
         br: true,
       },
       license: {
+        br: true,
+      },
+      link: {
         br: true,
       },
     };
