@@ -120,8 +120,8 @@ class SimpleImage {
         contentEditable: !this.readOnly,
         innerHTML: this.data.license || "",
         id: "license",
-      });
-    link = this._make("div", [this.CSS.input, this.CSS.caption], {
+      }),
+      link = this._make("div", [this.CSS.input, this.CSS.caption], {
         contentEditable: !this.readOnly,
         innerHTML: this.data.link || "",
         id: "link",
@@ -180,7 +180,7 @@ class SimpleImage {
       alt = blockContent.querySelector("#alt"),
       width = blockContent.querySelector("#width"),
       license = blockContent.querySelector("#license");
-      link = blockContent.querySelector("#link");
+    link = blockContent.querySelector("#link");
 
     if (!image) {
       return this.data;
