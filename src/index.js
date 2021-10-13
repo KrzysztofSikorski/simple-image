@@ -116,21 +116,26 @@ class SimpleImage {
         innerHTML: this.data.alt || "",
         id: "alt",
       }),
-      license = this._make("div", [this.CSS.input, this.CSS.caption], {
-        contentEditable: !this.readOnly,
-        innerHTML: this.data.license || "",
-        id: "license",
-      }),
-      link = this._make("div", [this.CSS.input, this.CSS.caption], {
+      license = document.createElement("select"),
+      (link = this._make("div", [this.CSS.input, this.CSS.caption], {
         contentEditable: !this.readOnly,
         innerHTML: this.data.link || "",
         id: "link",
-      });
+      }));
+
+    ['none', "publiczna", "cc2", "cc3", "cc4", "ccs2", "ccs3", "ccs4"].map((lic) => {
+      const option = document.createElement("option");
+      option.value = lic;
+      option.innerHTML = lic;
+      license.appendChild(option);
+    });
+
+    license.id = 'license'
+    license.value = this.data.license || "none"
 
     caption.dataset.placeholder = "Enter a caption";
     width.dataset.placeholder = "Enter a width";
     alt.dataset.placeholder = "Enter a alt";
-    license.dataset.placeholder = "Enter a license";
     link.dataset.placeholder = "Enter a link";
 
     wrapper.appendChild(loader);
@@ -191,7 +196,7 @@ class SimpleImage {
       caption: caption.innerHTML,
       width: width.innerHTML,
       alt: alt.innerHTML,
-      license: license.innerHTML,
+      license: license.value,
       link: link.innerHTML,
     });
   }
