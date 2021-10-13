@@ -117,21 +117,23 @@ class SimpleImage {
         id: "alt",
       }),
       license = document.createElement("select"),
-      (link = this._make("div", [this.CSS.input, this.CSS.caption], {
+      link = this._make("div", [this.CSS.input, this.CSS.caption], {
         contentEditable: !this.readOnly,
         innerHTML: this.data.link || "",
         id: "link",
-      }));
+      });
 
-    ['none', "publiczna", "cc2", "cc3", "cc4", "ccs2", "ccs3", "ccs4"].map((lic) => {
-      const option = document.createElement("option");
-      option.value = lic;
-      option.innerHTML = lic;
-      license.appendChild(option);
-    });
+    ["none", "publiczna", "cc2", "cc3", "cc4", "ccs2", "ccs3", "ccs4"].map(
+      (lic) => {
+        const option = document.createElement("option");
+        option.value = lic;
+        option.innerHTML = lic;
+        license.appendChild(option);
+      }
+    );
 
-    license.id = 'license'
-    license.value = this.data.license || "none"
+    license.id = "license";
+    license.value = this.data.license || "none";
 
     caption.dataset.placeholder = "Enter a caption";
     width.dataset.placeholder = "Enter a width";
