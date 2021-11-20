@@ -78,7 +78,7 @@ class SimpleImage {
       caption: data.caption || "",
       width: data.width || "600",
       alt: data.alt || "",
-      license: data.license || "",
+      license: data.license || "none",
       link: data.link || "",
     };
 
@@ -116,24 +116,30 @@ class SimpleImage {
         innerHTML: this.data.alt || "",
         id: "alt",
       }),
-      license = document.createElement("select"),
+      license = this._make("div", [this.CSS.input, this.CSS.caption], {
+        contentEditable: !this.readOnly,
+        innerHTML: this.data.license || "none",
+        id: "license",
+      }),
       link = this._make("div", [this.CSS.input, this.CSS.caption], {
         contentEditable: !this.readOnly,
         innerHTML: this.data.link || "",
         id: "link",
       });
 
+    const licenseSelect = document.createElement("select");
+
     ["none", "publiczna", "cc2", "cc3", "cc4", "ccs2", "ccs3", "ccs4"].map(
       (lic) => {
         const option = document.createElement("option");
         option.value = lic;
         option.innerHTML = lic;
-        license.appendChild(option);
+        licenseSelect.appendChild(option);
       }
     );
 
-    license.id = "license";
-    license.value = this.data.license || "none";
+    licenseSelect.value = "none";
+    licenseSelect.onchange = (e) => (license.value = e.target.value);
 
     caption.dataset.placeholder = "Enter a caption";
     width.dataset.placeholder = "Enter a width";
@@ -198,7 +204,7 @@ class SimpleImage {
       caption: caption.innerHTML,
       width: width.innerHTML,
       alt: alt.innerHTML,
-      license: license.value,
+      license: license.innerHTML,
       link: link.innerHTML,
     });
   }
