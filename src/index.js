@@ -129,14 +129,21 @@ class SimpleImage {
 
     const licenseSelect = document.createElement("select");
 
-    ["none", "publiczna", "cc2", "cc3", "cc4", "ccs2", "ccs3", "ccs4"].map(
-      (lic) => {
-        const option = document.createElement("option");
-        option.value = lic;
-        option.innerHTML = lic;
-        licenseSelect.appendChild(option);
-      }
-    );
+    [
+      ["none", "żadna"],
+      ["publiczna", "Publiczna"],
+      ["cc2", "CC BY 2.0"],
+      ["cc3", "CC BY 3.0"],
+      ["cc4", "CC BY 4.0"],
+      ["ccs2", "CC BY-SA 2.0"],
+      ["ccs3", "CC BY-SA 3.0"],
+      ["ccs4", "CC BY-SA 4.0"],
+    ].map((lic) => {
+      const option = document.createElement("option");
+      option.value = lic[0];
+      option.innerHTML = lic[1];
+      licenseSelect.appendChild(option);
+    });
 
     licenseSelect.value = "none";
     licenseSelect.onchange = (e) => {
