@@ -160,6 +160,7 @@ class SimpleImage {
       wrapper.appendChild(width);
       wrapper.appendChild(alt);
       wrapper.appendChild(license);
+      wrapper.appendChild(licenseSelect);
       wrapper.appendChild(link);
       loader.remove();
       this._acceptTuneView();
