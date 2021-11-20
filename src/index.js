@@ -139,7 +139,10 @@ class SimpleImage {
     );
 
     licenseSelect.value = "none";
-    licenseSelect.onchange = (e) => (license.value = e.target.value);
+    licenseSelect.onchange = (e) => {
+      console.log(e.target.value);
+      license.innerHTML = e.target.value;
+    };
 
     caption.dataset.placeholder = "Enter a caption";
     width.dataset.placeholder = "Enter a width";
